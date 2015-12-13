@@ -1,0 +1,2 @@
+Main-Class: me.glor.Doppelkopf.Run
+Manifest-Version: 1.0

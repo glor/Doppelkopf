@@ -1,0 +1,37 @@
+<project name="Doppelkopf" default="dist" basedir=".">
+	<property name="class.dir" value="bin"/>
+	<property name="source.dir" value="src"/>
+	<property name="doc.dir" value="doc"/>
+	<property name="dist.dir" value="dist"/>
+	
+	<target name="init">
+		<tstamp/>
+		<mkdir dir="bin"/>
+		<mkdir dir="doc"/>
+		<mkdir dir="dist"/>
+	</target>
+	
+	<target name="doc" depends="init" description="generate documentation">
+		<javadoc sourcepath="${source.dir}" destdir="${doc.dir}"/>
+	</target>
+  
+	<target name="compile" depends="init" description="compile sources">
+		<javac includeantruntime="false" srcdir="${source.dir}" destdir="${class.dir}"/>
+	</target>
+
+	<target name="dist" depends="compile, doc" description="generate the distribution">
+		<jar jarfile="${dist.dir}/Doppelkopf.jar" basedir="${class.dir}" manifest="MANIFEST.MF"/>
+	</target>
+	
+	<target name="run">
+        <java jar="dist/Doppelkopf.jar" fork="true"/>
+    </target>
+
+	<target name="clean"
+		description="clean up">
+		<delete dir="bin"/>
+		<delete dir="doc"/>
+		<delete dir="dist"/>
+	</target>
+</project>
+
