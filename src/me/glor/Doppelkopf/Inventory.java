@@ -1,86 +1,102 @@
 package me.glor.Doppelkopf;
 
-public class Inventory {
-	/**
-	 * -1 in inv means that there is no card
-	 */
-	public int[] inv = new int[12];
-	public int count = 0;
-	private int linearSearch(int key) {
-		for(int i=0; i<count; i++) {
-			if(inv[i]==key) {
-				return i;
-			}
-		}
-		return -1;
-	}
-	private int binarySearch(int[] array, int max, int key) {
-		int high = max;
-		int low = 0;
-		int mid;
-		while(low <= high) {
-			mid = (high+low)/2;
-			if(array[mid]<key) {
-				high = mid-1;
-			} else if(array[mid]>key) {
-				low = mid-1;
-			} else {
-				return mid;
-			}
-		}
-		return -1;
-	}
+import java.util.Iterator;
 
-	private void insertionSort(int[] array, int lo, int hi) {
-		int tmp;
-		for(int i=lo; i<=hi; i++) {
-			for(int j=i; j>lo && array[i]<array[j-1] ; j--) {
-				tmp = array[j];
-				array[j] = array[j-1];
-				array[j-1] = tmp;
-			}
-		}
-	}
+public class Inventory implements Iterable<Integer> {
 	
-	public void add(int card) {
-		/*if(count==11) {
-			insertionSort(inv, 0, inv.length);
-		}*/
-		if(count==12)
-			throw new IndexOutOfBoundsException("Too many cards in your inventory.");
-		inv[count] = card;
-		count++;
-	}
-	public void remove(int card) {
-		if(count == 0)
-			throw new IndexOutOfBoundsException("Your inventory is empty. You cannot remove a card.");
-		int i = linearSearch(card);
-		count--;
-		inv[i] = inv[count];
-		inv[count] = -1;
+	public static class InventoryIterator implements Iterator<Integer> {
+		Inventory inv;
+		private InventoryIterator() {
+		}
+		int i;
+		public InventoryIterator(Inventory inv) {
+			this.inv = inv;
+			i = 0;
+		}
+		public boolean hasNext() {
+			return i<inv.getSize();
+		}
+
+		public Integer next() {
+			i++;
+			return inv.getElem(i - 1);
+		}
 		
 	}
+	
+	public Inventory() {
+	}
 	/*
-	 * could be replaced by additional bitmask
+	 * unbox for more speed and safety
+	 */
+	public Inventory(int[] inv) {
+		for(int i:inv)
+			add(i);
+	}
+	
+	private int size = 0;
+	private int[] inv = new int[Constants.CARDS_PER_PLAYER];
+	private int[] content = new int[48];
+	
+	protected int getElem(int i) {
+		return inv[i];
+	}
+	/*
+	 * O(1)
+	 */
+	public void add(int card) {
+		if(size==Constants.CARDS_PER_PLAYER)
+			throw new IndexOutOfBoundsException("Too many cards in your inventory.");
+		inv[size] = card;
+		content[card]++;
+		size++;
+	}
+	/*
+	 * O(n) = 1 to 12 iterations
+	 * => O(1)
+	 */
+	public void remove(int card) {
+		if(size == 0)
+			throw new IndexOutOfBoundsException("Your inventory is empty. You cannot remove a card.");
+		if(content[card] == 0)
+			throw new RuntimeException("No such card in inventory.");
+		int i = 0;
+		while(i < size && inv[i] != card)
+			i++;
+		size--;
+		inv[i] = inv[size];
+		inv[size] = -1;
+		content[card]--;
+	}
+	
+	public int getSize() {
+		return size;
+	}
+	/*
+	 * O(1)
 	 */
 	public boolean hasCard(int card) {
-		return linearSearch(card)!=-1;
-		//return binarySearch(inv, 0, count-1) != -1;
+		return content[card] > 0;
 	}
 	public String toString() {
 		String s = "";
-		for(int i=0; i<count-1; i++) {
+		for(int i=0; i<size-1; i++) {
 			s += Cards.toString(inv[i]) + ", ";
 		}
-		s+=Cards.toString(inv[count-1]);
+		s+=Cards.toString(inv[size-1]);
 		return s;
 	}
 
 	public Inventory copy() {
-		Inventory newInv = new Inventory();
-		for(int i=0; i<count; i++) {
-			newInv.add(inv[i]);
-		}
-		return newInv;
+		return new Inventory(inv);
+	}
+	public Iterator<Integer> iterator() {
+		return new InventoryIterator(this);
+	}
+	public int[] getArray() {
+		int[] copy = new int[size];
+		for(int i=0; i<inv.length; i++)
+			copy[i] = inv[i];
+		return copy;
 	}
 }

@@ -2,8 +2,8 @@ package me.glor.Doppelkopf;
 
 public class HumanPlayer extends AbstractPlayer {
 	Input in;
-	public HumanPlayer(int nr, Input in, Inventory inv) {
-		super(nr, inv);
+	public HumanPlayer(TableViewer tv, Input in) {
+		super(tv);
 		this.in = in;
 	}
 	
@@ -16,7 +16,8 @@ public class HumanPlayer extends AbstractPlayer {
 
 	public void update(int card) {
 	}
-	public void reset(int nr, Inventory inv) {
-		super.reset(nr, inv);
+	public void reset(TableViewer tv, int[] inv) {
+		this.tv = tv;
+		this.inv = new Inventory(inv);
 	}
 }

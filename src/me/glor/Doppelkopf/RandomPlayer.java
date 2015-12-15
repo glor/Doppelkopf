@@ -7,25 +7,23 @@ public class RandomPlayer extends AbstractPlayer {
 	Input in;
 	int lastCard;
 	Random rn = new Random();
-	public RandomPlayer(int nr, Inventory inv) {
-		super(nr, inv);
+	public RandomPlayer(TableViewer tv) {
+		super(tv);
 	}
 	
 	public int request() {
-		ArrayList<Integer> cards = table.getPossibleMoves();
+		ArrayList<Integer> cards = tv.getAllMoves();
 		lastCard = cards.get(Math.abs(rn.nextInt())%cards.size());
 		return lastCard;
 	}
 
 	public void confirm() {
-		table.putCard(nr, lastCard);
 		
 	}
 
 	public void update(int card) {
-		table.forceCard(card);
 	}
-	public void reset(int nr, Inventory inv) {
-		super.reset(nr, inv);
+	public void reset(int[] inv) {
+		super.reset(inv);
 	}
 }

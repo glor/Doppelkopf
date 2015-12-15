@@ -3,6 +3,7 @@ package me.glor.Doppelkopf;
 import java.util.Scanner;
 
 public class Tui implements Input, Output {
+	public static boolean colored = false;
 	String currentRound;
 	public Tui() {
 	}

@@ -1,30 +1,24 @@
 package me.glor.Doppelkopf;
 
 public abstract class AbstractPlayer implements Player {
-	protected int nr;
+	Inventory inv;
+	TableViewer tv;
 	@SuppressWarnings("unused")
 	private AbstractPlayer() {
 	}
-	public AbstractPlayer(int nr, Inventory inv) {
-		table = new Table();
-		this.nr = nr;
-		table.inv[nr] = inv.copy();
+	public AbstractPlayer(TableViewer tv) {
+		this.tv = tv;
 	}
-	Table table;
 	public int request() {
 		return 0;
 	}
 
 	public void confirm() {
-		
 	}
 
 	public void update(int card) {
-		
 	}
-	public void reset(int nr, Inventory inv) {
-		table = new Table();
-		this.nr = nr;
-		table.inv[nr] = inv.copy();
+	public void reset(int[] inv) {
+		this.inv = new Inventory(inv);
 	}
 }
