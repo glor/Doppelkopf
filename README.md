@@ -17,4 +17,5 @@ Doppelkopf Card game implementation in Java
 
 ## how to build
 1. git clone https://github.com/glor/Doppelkopf.git
-2. ant run
+2. ant dist
+3. ant run
