@@ -2,6 +2,9 @@ package me.glor.Doppelkopf;
 
 import java.util.Iterator;
 
+import me.glor.Doppelkopf.Core.Cards;
+import me.glor.Doppelkopf.Core.Constants;
+
 public class Inventory implements Iterable<Integer> {
 	
 	public static class InventoryIterator implements Iterator<Integer> {

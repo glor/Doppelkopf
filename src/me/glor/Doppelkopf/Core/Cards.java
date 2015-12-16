@@ -1,6 +1,8 @@
-package me.glor.Doppelkopf;
+package me.glor.Doppelkopf.Core;
 
 import java.util.ArrayList;
+
+import me.glor.Doppelkopf.Tui;
 
 /**
  * Cards are represented as integers.
@@ -121,4 +123,81 @@ public abstract class Cards {
 			return false;
 		return false;
 	}
+	
+	private static int[] priority_default =		{1,	5,	9,	2,	3,	4,	0,	6,	10,	0,	13,	0,	0,	7,	11,	0,	0,	0,	0,	8,	12,	0,	0,	0	};
+	private static int[] priority_herz =		{1,	5,	9,	2,	3,	4,	0,	6,	10,	0,	13,	0,	0,	7,	11,	0,	0,	0,	0,	8,	12,	0,	0,	0	};//not correct
+	private static int[] priority_pik =			{1,	5,	9,	2,	3,	4,	0,	6,	10,	0,	13,	0,	0,	7,	11,	0,	0,	0,	0,	8,	12,	0,	0,	0	};//not correct
+	private static int[] priority_kreuz =		{1,	5,	9,	2,	3,	4,	0,	6,	10,	0,	13,	0,	0,	7,	11,	0,	0,	0,	0,	8,	12,	0,	0,	0	};//not correct
+	private static int[] priority_damen =		{0,	0,	1,	0,	0,	0,	0,	0,	2,	0,	0,	0,	0,	0,	3,	0,	0,	0,	0,	0,	4,	0,	0,	0	};
+	private static int[] priority_buben =		{0,	1,	0,	0,	0,	0,	0,	2,	0,	0,	0,	0,	0,	3,	0,	0,	0,	0,	0,	4,	0,	0,	0,	0	};
+	private static int[] priority_ass =			{0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0	};
+	
+	protected static void setMode(int mode) {
+		int[] newarray;
+		switch(mode) {
+			case Constants.CARD_MODUS_SOLO_KARO:
+				newarray = priority_default;
+				break;
+			case Constants.CARD_MODUS_SOLO_HERZ:
+				newarray = priority_herz;
+				break;
+			case Constants.CARD_MODUS_SOLO_PIK:
+				newarray = priority_pik;
+				break;
+			case Constants.CARD_MODUS_SOLO_KREUZ:
+				newarray = priority_kreuz;
+				break;
+			case Constants.CARD_MODUS_SOLO_BUBEN:
+				newarray = priority_buben;
+				break;
+			case Constants.CARD_MODUS_SOLO_DAMEN:
+				newarray = priority_damen;
+				break;
+			case Constants.CARD_MODUS_SOLO_ASS:
+				newarray = priority_ass;
+				break;
+		default:
+			throw new RuntimeException("Wrong Game Modus");
+		}
+		System.arraycopy(newarray, 0, priority, 0, newarray.length);
+	}
+	
+	public static int identify(String s) {
+		if(!s.matches("[CHPK](9|B|D|K|10)"))
+			return Constants.CARD_INVALID;
+		int card = 0;
+		switch(s.charAt(0)) {
+			case 'C':
+				card = 0;
+				break;
+			case 'H':
+				card = 1;
+				break;
+			case 'P':
+				card = 2;
+				break;
+			case 'K':
+				card = 3;
+				break;
+		}
+		switch(s.charAt(0)) {
+			case '9':
+				card += 0;
+				break;
+			case 'B':
+				card += 1;
+				break;
+			case 'D':
+				card += 2;
+				break;
+			case 'K':
+				card += 3;
+				break;
+			case '1':
+				card += 4;
+				break;
+		}
+		return card;
+	}
+	
 }

@@ -3,6 +3,8 @@ package me.glor.Doppelkopf;
 import java.util.ArrayList;
 import java.util.Random;
 
+import me.glor.Doppelkopf.Core.TableViewer;
+
 public class RandomPlayer extends AbstractPlayer {
 	Input in;
 	int lastCard;

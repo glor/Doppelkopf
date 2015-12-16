@@ -1,6 +1,10 @@
-package me.glor.Doppelkopf;
+package me.glor.Doppelkopf.Core;
 
 import java.util.ArrayList;
+
+import me.glor.Doppelkopf.Player;
+import me.glor.Doppelkopf.RandomPlayer;
+import me.glor.Doppelkopf.Tui;
 
 public class Run {
 	private static int debugLevel = 0;

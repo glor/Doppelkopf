@@ -1,2 +1,2 @@
-Main-Class: me.glor.Doppelkopf.Run
+Main-Class: me.glor.Doppelkopf.Core.Run
 Manifest-Version: 1.0

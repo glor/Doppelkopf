@@ -1,4 +1,4 @@
-package me.glor.Doppelkopf;
+package me.glor.Doppelkopf.Core;
 
 import java.util.ArrayList;
 

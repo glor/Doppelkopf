@@ -1,6 +1,10 @@
 package me.glor.Doppelkopf;
 
+import java.util.HashMap;
 import java.util.Scanner;
+
+import me.glor.Doppelkopf.Core.Cards;
+import me.glor.Doppelkopf.Core.Constants;
 
 public class Tui implements Input, Output {
 	public static boolean colored = false;
@@ -19,7 +23,14 @@ public class Tui implements Input, Output {
 		System.out.println(msg);
 	}
 	public int receiveCard() {
-		return sc.nextInt();
+		int card;
+		do {
+			if(!sc.hasNextLine()) {
+				throw new RuntimeException("Unexpected end to input stream.");
+			}
+			card = Cards.identify(sc.nextLine());
+		} while (card == Constants.CARD_INVALID);
+		return card;
 	}
 
 }

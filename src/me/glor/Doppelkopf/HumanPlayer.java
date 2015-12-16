@@ -1,5 +1,7 @@
 package me.glor.Doppelkopf;
 
+import me.glor.Doppelkopf.Core.TableViewer;
+
 public class HumanPlayer extends AbstractPlayer {
 	Input in;
 	public HumanPlayer(TableViewer tv, Input in) {

@@ -1,8 +1,11 @@
-package me.glor.Doppelkopf;
+package me.glor.Doppelkopf.Core;
 
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Stack;
+
+import me.glor.Doppelkopf.Inventory;
+import me.glor.Doppelkopf.Player;
 /**
  * provides core functionality of a playing table.
  * @author glor

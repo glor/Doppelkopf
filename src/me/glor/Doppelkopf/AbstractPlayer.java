@@ -1,5 +1,7 @@
 package me.glor.Doppelkopf;
 
+import me.glor.Doppelkopf.Core.TableViewer;
+
 public abstract class AbstractPlayer implements Player {
 	Inventory inv;
 	TableViewer tv;
