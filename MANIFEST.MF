@@ -1,2 +1,2 @@
-Main-Class: me.glor.Doppelkopf.Core.Run
+Main-Class: dokoRun.Run
 Manifest-Version: 1.0

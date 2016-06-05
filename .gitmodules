@@ -1,0 +1,3 @@
+[submodule "src/dokoCore"]
+	path = src/dokoCore
+	url = https://github.com/glor/dokoCore.git
