@@ -1,0 +1,11 @@
+﻿Heuristik-Anspiel
+- Fehlfarbenanspiel: - Ass (Kreuz, Pik, Herz), 9 (Kreuz, Pik, Herz)
+- Trumpfanspiel: - Karobube, Herzbube, (Pikbube)
+
+SPIELMODI
+- bei Hochzeit: falls Hochzeitsspieler am Anspiel zusätzlich für alle 10, alle Asse
+- bei Solo: falls Solospieler am Anspiel, gespieltes Solo (Bube/Dame hineinrechnen), für Fleischlos Karo-Ass mit reinrechnend
+- Armut, falls “Trumpfspieler” am Anspiel, auch Nicht-Trumpf-Könige hereinrechnen
+
+
+Frage: Was passiert, wenn ein Spiele meint, ein besonderer Special-Snowflake zu sein und mit einem anderen Zug, welcher nicht berechnet wurde, herauszukommen? → Neurechnen, oder :(?
